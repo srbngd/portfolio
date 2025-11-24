@@ -1147,67 +1147,86 @@ h6 {
     /* Adjust hero layout */
     .hero {
         grid-template-columns: 1fr;
-        padding: 6rem 1rem 2rem 1rem;
-        /* Added top padding for fixed navbar */
+        padding: 7rem 1rem 3rem 1rem;
         text-align: center;
+        min-height: auto;
+        /* Allow content to dictate height */
     }
 
     .hero-content {
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
     }
 
     .hero-title {
-        font-size: 2rem;
-        line-height: 1.2;
+        font-size: 2.2rem;
+        line-height: 1.1;
+        margin-bottom: 1rem;
     }
 
     .hero-subtitle-role {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         line-height: 1.4;
+        text-align: center;
+        width: 100%;
     }
 
     .hero-subtitle {
-        font-size: 1rem;
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
     }
 
-    /* Navbar vertical layout */
-    .navbar {
-        height: auto;
-        padding: 1.5rem;
-        border-radius: 20px;
-        /* Less rounded on mobile */
-        width: 95%;
-    }
-
-    .nav-container {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-
-    .nav-links {
+    /* Hero Buttons */
+    .hero-cta {
+        display: flex;
         flex-direction: column;
         gap: 1rem;
         width: 100%;
         align-items: center;
     }
 
-    .nav-link {
-        padding: 0.5rem 0;
+    .btn-primary {
         width: 100%;
+        max-width: 250px;
         text-align: center;
-        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
     }
 
-    /* Fix Resume Button Alignment */
-    .resume-btn {
-        position: static;
-        /* Reset absolute positioning */
-        margin-top: 0.5rem;
-        width: 100%;
-        text-align: center;
-        max-width: 200px;
+    /* Remove hover shine effect on mobile to fix glitch */
+    .btn-primary::before {
+        display: none;
+    }
+
+    /* Navbar vertical layout - Compact */
+    .navbar {
+        height: auto;
+        padding: 1rem;
+        border-radius: 15px;
+        width: 90%;
+        top: 1rem;
+        background: rgba(10, 14, 39, 0.95);
+        /* More opaque */
+    }
+
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        display: none;
+        /* Hide nav links on mobile to save space, user can use scroll */
+        /* Alternatively, we could make a hamburger menu, but for now let's hide to focus on content */
+    }
+
+    /* Show only Logo and maybe Resume in Navbar? 
+       Actually, let's keep the navbar simple: Logo centered. 
+       The Resume button is now in the Hero section. */
+
+    .logo {
+        font-size: 1.5rem;
     }
 
     /* Ensure planets hidden */
@@ -1222,6 +1241,6 @@ h6 {
 
     /* Section spacing */
     .section {
-        padding: 4rem 0;
+        padding: 3rem 0;
     }
 }
