@@ -1184,25 +1184,93 @@ h6 {
         letter-spacing: 0.05em;
     }
 
-    /* Navbar vertical layout */
-    .navbar {
+    /* Hamburger Menu Button */
+    .hamburger {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        height: auto;
-        padding: 1rem;
+        justify-content: space-between;
+        width: 30px;
+        height: 24px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1001;
+        position: relative;
     }
 
-    .nav-links {
-        flex-direction: column;
-        gap: 0.5rem;
+    .hamburger span {
+        display: block;
         width: 100%;
+        height: 3px;
+        background: var(--neon-cyan);
+        border-radius: 3px;
+        transition: all 0.3s ease;
+    }
+
+    /* Hamburger Animation when active */
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* Navbar mobile layout */
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem 2rem;
+        width: 90%;
+    }
+
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    /* Hide nav links and resume button by default on mobile */
+    .nav-links {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: rgba(5, 8, 16, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        gap: 0;
+        padding: 2rem;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        border-bottom: 1px solid var(--neon-cyan);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-links.active {
+        transform: translateX(0);
     }
 
     .nav-link {
-        padding: 0.5rem 0;
+        padding: 1rem 0;
         width: 100%;
-        text-align: left;
+        text-align: center;
+        font-size: 1.1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link:last-child {
+        border-bottom: none;
+    }
+
+    .btn-primary {
+        display: none;
     }
 
     /* Ensure planets hidden */
@@ -1218,5 +1286,12 @@ h6 {
     /* Section spacing */
     .section {
         padding: 4rem 0;
+    }
+}
+
+/* Hide hamburger on desktop */
+@media (min-width: 481px) {
+    .hamburger {
+        display: none;
     }
 }
