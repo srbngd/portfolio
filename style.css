@@ -1140,3 +1140,68 @@ h6 {
         right: 1rem;
     }
 }
+
+/* Responsive Mobile Styles */
+@media (max-width: 480px) {
+
+    /* Adjust hero layout */
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 2rem 1rem;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+
+    .hero-subtitle-role {
+        font-size: 1.2rem;
+        line-height: 1.4;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-cta .btn-primary {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    /* Navbar vertical layout */
+    .navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        padding: 1rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .nav-link {
+        padding: 0.5rem 0;
+        width: 100%;
+        text-align: left;
+    }
+
+    /* Ensure planets hidden */
+    .planet {
+        display: none !important;
+    }
+
+    /* Darker overlay for readability */
+    body::before {
+        background: rgba(5, 8, 16, 0.6);
+    }
+
+    /* Section spacing */
+    .section {
+        padding: 4rem 0;
+    }
+}
