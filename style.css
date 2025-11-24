@@ -1,21 +1,21 @@
 /* Infra Font */
 @font-face {
     font-family: 'Infra';
-    src: url('fonts/infra-cufonfonts/InfraRegular.otf') format('opentype');
+    src: url('./fonts/infra-cufonfonts/InfraRegular.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Infra';
-    src: url('fonts/infra-cufonfonts/InfraBold.otf') format('opentype');
+    src: url('./fonts/infra-cufonfonts/InfraBold.otf') format('opentype');
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Infra';
-    src: url('fonts/infra-cufonfonts/InfraBlack.otf') format('opentype');
+    src: url('./fonts/infra-cufonfonts/InfraBlack.otf') format('opentype');
     font-weight: 900;
     font-style: normal;
 }
