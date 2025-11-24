@@ -1147,7 +1147,15 @@ h6 {
     /* Adjust hero layout */
     .hero {
         grid-template-columns: 1fr;
-        padding: 2rem 1rem;
+        padding: 6rem 1rem 2rem 1rem;
+        /* Added top padding for fixed navbar */
+        text-align: center;
+    }
+
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .hero-title {
@@ -1164,30 +1172,42 @@ h6 {
         font-size: 1rem;
     }
 
-    .hero-cta .btn-primary {
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
-    }
-
     /* Navbar vertical layout */
     .navbar {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
         height: auto;
-        padding: 1rem;
+        padding: 1.5rem;
+        border-radius: 20px;
+        /* Less rounded on mobile */
+        width: 95%;
+    }
+
+    .nav-container {
+        flex-direction: column;
+        gap: 1.5rem;
     }
 
     .nav-links {
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 1rem;
         width: 100%;
+        align-items: center;
     }
 
     .nav-link {
         padding: 0.5rem 0;
         width: 100%;
-        text-align: left;
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    /* Fix Resume Button Alignment */
+    .resume-btn {
+        position: static;
+        /* Reset absolute positioning */
+        margin-top: 0.5rem;
+        width: 100%;
+        text-align: center;
+        max-width: 200px;
     }
 
     /* Ensure planets hidden */
@@ -1197,7 +1217,7 @@ h6 {
 
     /* Darker overlay for readability */
     body::before {
-        background: rgba(5, 8, 16, 0.6);
+        background: rgba(5, 8, 16, 0.7);
     }
 
     /* Section spacing */
