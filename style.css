@@ -39,6 +39,7 @@
     --font-heading: 'Infra', 'Roboto', sans-serif;
     --font-body: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+    /* Keep mono for code/tech tags if desired, or change to sans-serif */
 
     --header-height: 80px;
     --container-width: 1400px;
@@ -454,7 +455,8 @@ h6 {
     font-size: 4.5rem;
     line-height: 0.9;
     margin-bottom: 2rem;
-    font-weight: 900;
+    font-weight: 700;
+    /* Reduced from 900 */
     letter-spacing: -0.03em;
 }
 
