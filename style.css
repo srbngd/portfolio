@@ -1,3 +1,25 @@
+/* Infra Font */
+@font-face {
+    font-family: 'Infra';
+    src: url('fonts/infra-cufonfonts/InfraRegular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Infra';
+    src: url('fonts/infra-cufonfonts/InfraBold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Infra';
+    src: url('fonts/infra-cufonfonts/InfraBlack.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
 :root {
     /* Unique Color Palette - Cyberpunk/Neon Space */
     --bg-dark: #0a0e27;
@@ -14,7 +36,7 @@
     --glass-bg: rgba(15, 23, 42, 0.3);
     --glass-border: rgba(255, 255, 255, 0.1);
 
-    --font-heading: 'Roboto', sans-serif;
+    --font-heading: 'Infra', 'Roboto', sans-serif;
     --font-body: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 
@@ -43,11 +65,46 @@ body {
     position: relative;
 }
 
-/* Animated Grid Background */
-body::before {
+/* Space Background with More Stars */
+body::after {
     content: '';
     position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        /* Large stars */
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 60% 70%, white, transparent),
+        radial-gradient(2px 2px at 90% 60%, white, transparent),
+        radial-gradient(2px 2px at 15% 80%, white, transparent),
+        /* Medium stars */
+        radial-gradient(1.5px 1.5px at 50% 50%, white, transparent),
+        radial-gradient(1.5px 1.5px at 80% 10%, white, transparent),
+        radial-gradient(1.5px 1.5px at 33% 80%, white, transparent),
+        radial-gradient(1.5px 1.5px at 70% 40%, white, transparent),
+        /* Small stars */
+        radial-gradient(1px 1px at 15% 90%, white, transparent),
+        radial-gradient(1px 1px at 85% 85%, white, transparent),
+        radial-gradient(1px 1px at 40% 20%, white, transparent),
+        radial-gradient(1px 1px at 25% 60%, white, transparent),
+        radial-gradient(1px 1px at 95% 30%, white, transparent),
+        radial-gradient(1px 1px at 10% 45%, white, transparent),
+        radial-gradient(1px 1px at 65% 95%, white, transparent),
+        radial-gradient(1px 1px at 45% 15%, white, transparent);
+    background-size: 200% 200%;
+    animation: twinkle 5s ease-in-out infinite;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* Flowing Waves */
+body::before {
+    content: '';
+    position: fixed;
+    bottom: 0;
     left: 0;
     width: 100%;
     height: 100%;
@@ -58,23 +115,7 @@ body::before {
     animation: gridMove 20s linear infinite;
     z-index: 0;
     pointer-events: none;
-}
-
-/* Floating Orbs */
-body::after {
-    content: '';
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background:
-        radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(255, 0, 110, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.1) 0%, transparent 50%);
-    animation: orbitOrbs 30s ease-in-out infinite;
-    z-index: 0;
-    pointer-events: none;
+    opacity: 0.5;
 }
 
 @keyframes gridMove {
@@ -87,15 +128,76 @@ body::after {
     }
 }
 
-@keyframes orbitOrbs {
+@keyframes twinkle {
 
     0%,
     100% {
-        transform: rotate(0deg) scale(1);
+        opacity: 0.6;
     }
 
     50% {
-        transform: rotate(180deg) scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+/* Planetary Bodies */
+.planet {
+    position: fixed;
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.planet-1 {
+    width: 150px;
+    height: 150px;
+    top: 10%;
+    right: 15%;
+    background: radial-gradient(circle at 30% 30%, rgba(139, 92, 246, 0.6), rgba(139, 92, 246, 0.2));
+    box-shadow: 0 0 60px rgba(139, 92, 246, 0.4);
+    animation: float 20s ease-in-out infinite;
+}
+
+.planet-2 {
+    width: 100px;
+    height: 100px;
+    bottom: 20%;
+    left: 10%;
+    background: radial-gradient(circle at 35% 35%, rgba(0, 240, 255, 0.6), rgba(0, 240, 255, 0.2));
+    box-shadow: 0 0 50px rgba(0, 240, 255, 0.4);
+    animation: float 25s ease-in-out infinite reverse;
+}
+
+.planet-3 {
+    width: 80px;
+    height: 80px;
+    top: 60%;
+    right: 5%;
+    background: radial-gradient(circle at 40% 40%, rgba(255, 0, 110, 0.6), rgba(255, 0, 110, 0.2));
+    box-shadow: 0 0 40px rgba(255, 0, 110, 0.4);
+    animation: float 30s ease-in-out infinite;
+}
+
+.planet-4 {
+    width: 120px;
+    height: 120px;
+    top: 40%;
+    left: 5%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 214, 10, 0.5), rgba(255, 214, 10, 0.1));
+    box-shadow: 0 0 55px rgba(255, 214, 10, 0.3);
+    animation: float 22s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px) translateX(0px);
+    }
+
+    50% {
+        transform: translateY(-30px) translateX(20px);
     }
 }
 
@@ -349,11 +451,20 @@ h6 {
 }
 
 .hero-title {
-    font-size: 5rem;
+    font-size: 4.5rem;
     line-height: 0.9;
     margin-bottom: 2rem;
     font-weight: 900;
     letter-spacing: -0.03em;
+}
+
+.hero-subtitle-role {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    max-width: 600px;
 }
 
 .hero-title .highlight {
@@ -396,6 +507,26 @@ h6 {
     margin-bottom: 3rem;
     max-width: 900px;
     line-height: 1.8;
+}
+
+.highlight-text {
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+    position: relative;
+}
+
+.highlight-text::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--neon-cyan), transparent);
+    opacity: 0.5;
 }
 
 .hero-visual {
