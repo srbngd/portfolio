@@ -464,7 +464,8 @@ h6 {
     font-size: 3.5rem;
     line-height: 1.1;
     margin-bottom: 2rem;
-    font-weight: 900;
+    font-weight: 700;
+    /* Reduced from 900 */
     letter-spacing: -0.02em;
     max-width: 600px;
 }
