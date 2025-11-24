@@ -593,13 +593,13 @@ h6 {
 }
 
 .hero-subtitle-role {
-    font-size: 3.5rem;
-    line-height: 1.1;
+    font-size: 2.5rem;
+    line-height: 1.2;
     margin-bottom: 2rem;
     font-weight: 700;
     /* Reduced from 900 */
     letter-spacing: -0.02em;
-    max-width: 600px;
+    max-width: 100%;
 }
 
 .hero-title .highlight {
