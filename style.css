@@ -593,13 +593,22 @@ h6 {
 }
 
 .hero-subtitle-role {
-    font-size: 2.5rem;
-    line-height: 1.2;
+    font-family: var(--font-mono);
+    font-size: 2rem;
+    line-height: 1.4;
     margin-bottom: 2rem;
     font-weight: 700;
-    /* Reduced from 900 */
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
     max-width: 100%;
+
+    /* Neon Gradient Text */
+    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* Holographic Glow */
+    filter: drop-shadow(0 0 5px rgba(0, 240, 255, 0.3));
 }
 
 .hero-title .highlight {
