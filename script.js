@@ -51,5 +51,29 @@ document.addEventListener('DOMContentLoaded', () => {
             navbar.style.boxShadow = 'none';
         }
         lastScrollY = window.scrollY;
+
+        // Update active navigation link based on scroll position
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        let currentSection = '';
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+
+            // Check if we're in this section (with offset for navbar)
+            if (window.scrollY >= sectionTop - 100) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+
+        // Update active class on nav links
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentSection}`) {
+                link.classList.add('active');
+            }
+        });
     });
 });

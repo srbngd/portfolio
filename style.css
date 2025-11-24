@@ -335,6 +335,7 @@ h6 {
 
 .hero-content {
     z-index: 2;
+    padding-left: 4rem;
 }
 
 .hero-eyebrow {
@@ -756,15 +757,17 @@ h6 {
 }
 
 .skill-tag:hover::before {
-    width: 300px;
-    height: 300px;
+    width: 0;
+    height: 0;
 }
 
 .skill-tag:hover {
-    color: var(--bg-dark);
+    color: transparent;
+    -webkit-text-stroke: 1px var(--neon-cyan);
     border-color: var(--neon-cyan);
     box-shadow: 0 0 30px var(--neon-cyan);
     transform: translateY(-5px);
+    background: rgba(0, 240, 255, 0.1);
 }
 
 .skill-tag span {
