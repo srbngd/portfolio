@@ -1150,7 +1150,6 @@ h6 {
         padding: 7rem 1rem 3rem 1rem;
         text-align: center;
         min-height: auto;
-        /* Allow content to dictate height */
     }
 
     .hero-content {
@@ -1199,34 +1198,48 @@ h6 {
         display: none;
     }
 
-    /* Navbar vertical layout - Compact */
+    /* Navbar Layout: Logo Left, Resume Right */
     .navbar {
         height: auto;
-        padding: 1rem;
-        border-radius: 15px;
+        padding: 0.8rem 1.2rem;
+        border-radius: 50px;
+        /* Restore pill shape */
         width: 90%;
-        top: 1rem;
+        top: 1.5rem;
         background: rgba(10, 14, 39, 0.95);
-        /* More opaque */
     }
 
     .nav-container {
-        flex-direction: column;
-        gap: 1rem;
+        display: flex;
+        flex-direction: row;
+        /* Horizontal layout */
+        justify-content: space-between;
+        /* Space out Logo and Resume */
+        align-items: center;
+        width: 100%;
+        gap: 0;
     }
 
+    /* Hide text links on mobile */
     .nav-links {
         display: none;
-        /* Hide nav links on mobile to save space, user can use scroll */
-        /* Alternatively, we could make a hamburger menu, but for now let's hide to focus on content */
     }
 
-    /* Show only Logo and maybe Resume in Navbar? 
-       Actually, let's keep the navbar simple: Logo centered. 
-       The Resume button is now in the Hero section. */
-
     .logo {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+    }
+
+    /* Resume Button in Header */
+    .resume-btn {
+        display: block;
+        /* Ensure it's visible */
+        position: static;
+        margin: 0;
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+        width: auto;
+        /* Auto width */
+        max-width: none;
     }
 
     /* Ensure planets hidden */
