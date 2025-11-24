@@ -57,21 +57,35 @@ document.addEventListener('DOMContentLoaded', () => {
         const navLinks = document.querySelectorAll('.nav-link');
 
         let currentSection = '';
+        let closestSection = '';
+        let minDistance = Infinity;
 
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
+            const sectionBottom = sectionTop + sectionHeight;
+            const scrollPosition = window.scrollY + 150; // Offset for navbar
 
-            // Check if we're in this section (with offset for navbar)
-            if (window.scrollY >= sectionTop - 100) {
+            // Find the section we're currently in
+            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
                 currentSection = section.getAttribute('id');
+            }
+
+            // Find the closest section as a fallback
+            const distance = Math.abs(scrollPosition - sectionTop);
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestSection = section.getAttribute('id');
             }
         });
 
-        // Update active class on nav links
+        // Use currentSection if found, otherwise use closestSection
+        const activeSection = currentSection || closestSection;
+
+        // Update active class on nav links - only one at a time
         navLinks.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('href') === `#${currentSection}`) {
+            if (link.getAttribute('href') === `#${activeSection}`) {
                 link.classList.add('active');
             }
         });

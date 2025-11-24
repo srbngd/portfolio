@@ -1179,9 +1179,9 @@ h6 {
     }
 
     .hero-cta .btn-primary {
-        padding: 0.5rem 1.5rem;
-        font-size: 0.7rem;
-        letter-spacing: 0.08em;
+        padding: 0.5rem 1.2rem;
+        font-size: 0.65rem;
+        letter-spacing: 0.05em;
     }
 
     /* Navbar vertical layout */
