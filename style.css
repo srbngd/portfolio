@@ -1131,13 +1131,9 @@ h6 {
         font-size: 3.5rem;
     }
 
-    .navbar {
-        display: none;
-    }
-
     .resume-btn {
         top: 1rem;
-        right: 5em;
+        right: 1rem;
     }
 }
 
