@@ -1184,9 +1184,9 @@ h6 {
         letter-spacing: 0.05em;
     }
 
-    /* Hamburger Menu Button */
+    /* Hamburger Menu Button - Make it visible */
     .hamburger {
-        display: flex;
+        display: flex !important;
         flex-direction: column;
         justify-content: space-between;
         width: 30px;
@@ -1197,6 +1197,7 @@ h6 {
         padding: 0;
         z-index: 1001;
         position: relative;
+        order: 3;
     }
 
     .hamburger span {
@@ -1206,6 +1207,7 @@ h6 {
         background: var(--neon-cyan);
         border-radius: 3px;
         transition: all 0.3s ease;
+        box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
     }
 
     /* Hamburger Animation when active */
@@ -1223,10 +1225,12 @@ h6 {
 
     /* Navbar mobile layout */
     .navbar {
-        flex-direction: row;
+        flex-direction: row !important;
         justify-content: space-between;
+        align-items: center;
         padding: 1rem 2rem;
         width: 90%;
+        top: 1rem;
     }
 
     .nav-container {
@@ -1236,7 +1240,19 @@ h6 {
         width: 100%;
     }
 
-    /* Hide nav links and resume button by default on mobile */
+    .logo {
+        order: 1;
+    }
+
+    /* Show resume button in navbar */
+    .navbar .btn-primary {
+        display: inline-block !important;
+        padding: 0.4rem 1rem;
+        font-size: 0.65rem;
+        order: 2;
+    }
+
+    /* Hide nav links by default on mobile */
     .nav-links {
         position: fixed;
         top: 80px;
@@ -1251,6 +1267,7 @@ h6 {
         transition: transform 0.3s ease;
         border-bottom: 1px solid var(--neon-cyan);
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
     }
 
     .nav-links.active {
@@ -1267,10 +1284,6 @@ h6 {
 
     .nav-link:last-child {
         border-bottom: none;
-    }
-
-    .btn-primary {
-        display: none;
     }
 
     /* Ensure planets hidden */
@@ -1292,6 +1305,6 @@ h6 {
 /* Hide hamburger on desktop */
 @media (min-width: 481px) {
     .hamburger {
-        display: none;
+        display: none !important;
     }
 }
