@@ -905,6 +905,40 @@ h6 {
     font-size: 1.2rem;
 }
 
+.job-section-label {
+    font-weight: 700;
+    color: var(--neon-cyan);
+    font-family: var(--font-mono);
+    font-size: 0.92rem;
+    letter-spacing: 0.03em;
+    display: inline-block;
+    margin-right: 0.4rem;
+}
+
+.job-tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.job-tech-tag {
+    padding: 0.3rem 0.7rem;
+    background: rgba(0, 240, 255, 0.08);
+    border: 1px solid rgba(0, 240, 255, 0.35);
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--neon-cyan);
+    transition: all 0.3s ease;
+}
+
+.job-tech-tag:hover {
+    background: rgba(0, 240, 255, 0.2);
+    border-color: var(--neon-cyan);
+    transform: translateY(-1px);
+}
+
 /* Projects - Bento Grid */
 .projects-grid {
     display: grid;
