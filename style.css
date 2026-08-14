@@ -1006,6 +1006,28 @@ h6 {
     letter-spacing: 0.05em;
 }
 
+.case-study-toggle-wrapper {
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.case-study-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1.6rem;
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
 .case-study-details {
     margin-top: 2rem;
     padding-top: 2rem;
@@ -1015,7 +1037,7 @@ h6 {
 }
 
 .case-study-details.expanded {
-    display: block;
+    display: block !important;
     animation: fadeIn 0.4s ease-in-out;
 }
 
