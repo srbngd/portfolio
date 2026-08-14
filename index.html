@@ -224,6 +224,9 @@
                                     <span class="job-tech-tag">Haystack</span>
                                     <span class="job-tech-tag">Mistral 7B LLM</span>
                                 </div>
+                                <p style="margin-top: 0.85rem; font-style: italic; color: var(--neon-purple); font-size: 0.85rem; font-family: var(--font-mono);">
+                                    &#8627; Note: For a deep-dive into the technical architecture and methodology of this role, please see the expanded case study in the Projects section.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -648,6 +651,209 @@
                         </div>
                     </div>
 
+                    <!-- Project 5: Predictive Community Health Scoring -->
+                    <div class="card project-card full-width">
+                        <span class="case-study-badge" style="border-color: var(--neon-pink); color: var(--neon-pink); background: rgba(236, 72, 153, 0.1);">
+                            <i class="fa-solid fa-trophy"></i> 2nd Place &bull; Future Edelman Award (Purdue University)
+                        </span>
+                        <h3 class="project-title" style="margin-top: 0.5rem; margin-bottom: 0.2rem;">Predictive Community Health Scoring & Engagement Telemetry</h3>
+                        <p style="color: var(--neon-pink); font-family: var(--font-mono); font-size: 0.95rem; margin-bottom: 1rem;">
+                            <strong>Role:</strong> Lead Analytics Engineer
+                        </p>
+
+                        <p class="project-desc" style="margin-bottom: 1.5rem;">
+                            Architected a robust, predictive machine learning pipeline to quantify "Community Health" by transforming highly dimensional, unstructured user engagement telemetry into a calibrated, continuous probability score forecasting community retention and vitality.
+                        </p>
+
+                        <div class="case-study-metrics-grid" style="margin-bottom: 1.5rem;">
+                            <div class="metric-card" style="border-color: rgba(236, 72, 153, 0.3);">
+                                <span class="metric-val" style="color: var(--neon-pink);">2nd Place</span>
+                                <span class="metric-lbl">Future Edelman Award</span>
+                            </div>
+                            <div class="metric-card" style="border-color: rgba(236, 72, 153, 0.3);">
+                                <span class="metric-val" style="color: var(--neon-pink);">EMA + PCA</span>
+                                <span class="metric-lbl">Feature Processing</span>
+                            </div>
+                            <div class="metric-card" style="border-color: rgba(236, 72, 153, 0.3);">
+                                <span class="metric-val" style="color: var(--neon-pink);">0-100</span>
+                                <span class="metric-lbl">Calibrated Score</span>
+                            </div>
+                            <div class="metric-card" style="border-color: rgba(236, 72, 153, 0.3);">
+                                <span class="metric-val" style="color: var(--neon-pink);">Graph</span>
+                                <span class="metric-lbl">Network Centrality</span>
+                            </div>
+                        </div>
+
+                        <div class="project-tech" style="margin-bottom: 1.5rem;">
+                            <span>Gradient Boosting</span>
+                            <span>PageRank & Centrality</span>
+                            <span>Exponential Moving Averages (EMA)</span>
+                            <span>Box-Cox & Yeo-Johnson</span>
+                            <span>Principal Component Analysis (PCA)</span>
+                            <span>Python / Scikit-Learn</span>
+                        </div>
+
+                        <!-- Native Case Study Accordion -->
+                        <details class="case-study-accordion pink-theme">
+                            <summary class="case-study-toggle-btn btn btn-secondary" style="border-color: var(--neon-pink); color: var(--neon-pink); background: rgba(236, 72, 153, 0.05);">
+                                <span class="summary-content" style="pointer-events: none; display: inline-flex; align-items: center; gap: 0.6rem;"><i class="fa-solid fa-square-plus"></i> Explore Full Technical Case Study</span>
+                            </summary>
+
+                            <div class="case-study-details-body">
+                                
+                                <!-- Section 1 -->
+                                <div class="case-study-section">
+                                    <h4 class="case-study-h4" style="color: var(--neon-pink);"><i class="fa-solid fa-bullseye"></i> 1. Technical Objective</h4>
+                                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                                        Architect a robust, predictive machine learning pipeline to quantify "Community Health" by transforming highly dimensional, unstructured user engagement telemetry into a calibrated, continuous probability score forecasting community retention and vitality.
+                                    </p>
+                                </div>
+
+                                <!-- Section 2 -->
+                                <div class="case-study-section">
+                                    <h4 class="case-study-h4" style="color: var(--neon-pink);"><i class="fa-solid fa-diagram-project"></i> 2. Data Engineering & Feature Synthesis</h4>
+                                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                                        User interaction data inherently follows a skewed power-law distribution. To extract meaningful signal from noise, I engineered an automated data pipeline to parse raw event logs. The feature engineering framework synthesized three distinct classes of metrics:
+                                    </p>
+                                    <ul class="timeline-list" style="margin-top: 0.75rem;">
+                                        <li>
+                                            <strong>Velocity Metrics:</strong> Calculating time-decayed exponential moving averages (EMA) of user session lengths and interaction frequencies to capture recent behavioral shifts.
+                                        </li>
+                                        <li>
+                                            <strong>Network Centrality:</strong> Mapping user-to-user interaction graphs to calculate PageRank and Eigenvector centrality, identifying core "node" users critical to community stability.
+                                        </li>
+                                        <li>
+                                            <strong>Variance Tracking:</strong> Measuring the rolling standard deviation of engagement to flag erratic community behavior preceding churn.
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- Section 3 -->
+                                <div class="case-study-section">
+                                    <h4 class="case-study-h4" style="color: var(--neon-pink);"><i class="fa-solid fa-calculator"></i> 3. Statistical Normalization & Dimensionality Reduction</h4>
+                                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                                        Because tree-based models and linear algorithms struggle with heavily skewed inputs, I implemented rigorous preprocessing. Highly skewed features were transformed using Box-Cox and Yeo-Johnson transformations to stabilize variance and approximate normal distributions. Multicollinearity among engagement features was neutralized using Principal Component Analysis (PCA) to ensure orthogonal inputs.
+                                    </p>
+                                </div>
+
+                                <!-- Section 4 -->
+                                <div class="case-study-section">
+                                    <h4 class="case-study-h4" style="color: var(--neon-pink);"><i class="fa-solid fa-chart-line"></i> 4. Predictive Modeling & Impact</h4>
+                                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                                        The processed feature matrix was fed into a Gradient Boosting framework optimized via hyperparameter tuning to output a normalized 0-100 "Health Score." The mathematical rigor and predictive accuracy of this pipeline successfully translated abstract user behavior into a deterministic strategy model, securing <strong>2nd Place in the Future Edelman Award</strong> analytics competition.
+                                    </p>
+                                </div>
+
+                            </div>
+                        </details>
+                    </div>
+
+                    <!-- Project 6: AI-Powered Legal NLP Pipeline -->
+                    <div class="card project-card full-width">
+                        <span class="case-study-badge" style="border-color: var(--neon-purple); color: var(--neon-purple); background: rgba(139, 92, 246, 0.1);">
+                            <i class="fa-solid fa-file-contract"></i> Enterprise Data Architecture &bull; HBH Holdings
+                        </span>
+                        <h3 class="project-title" style="margin-top: 0.5rem; margin-bottom: 0.2rem;">AI-Powered Legal NLP Pipeline & Semantic RAG Architecture</h3>
+                        <p style="color: var(--neon-purple); font-family: var(--font-mono); font-size: 0.95rem; margin-bottom: 1rem;">
+                            <strong>Role:</strong> Data Analyst / ML Engineer
+                        </p>
+
+                        <p class="project-desc" style="margin-bottom: 1.5rem;">
+                            Designed and deployed an end-to-end Retrieval-Augmented Generation (RAG) system capable of ingesting highly unstructured, complex legal contracts and enabling deterministic, sub-5 second semantic question-answering for non-technical stakeholders.
+                        </p>
+
+                        <div class="case-study-metrics-grid" style="margin-bottom: 1.5rem;">
+                            <div class="metric-card" style="border-color: rgba(139, 92, 246, 0.3);">
+                                <span class="metric-val" style="color: var(--neon-purple);">+75%</span>
+                                <span class="metric-lbl">Retrieval Accuracy</span>
+                            </div>
+                            <div class="metric-card" style="border-color: rgba(139, 92, 246, 0.3);">
+                                <span class="metric-val" style="color: var(--neon-purple);">&lt;5s</span>
+                                <span class="metric-lbl">Inference Latency</span>
+                            </div>
+                            <div class="metric-card" style="border-color: rgba(139, 92, 246, 0.3);">
+                                <span class="metric-val" style="color: var(--neon-purple);">NFKC</span>
+                                <span class="metric-lbl">Unicode Normalization</span>
+                            </div>
+                            <div class="metric-card" style="border-color: rgba(139, 92, 246, 0.3);">
+                                <span class="metric-val" style="color: var(--neon-purple);">ChromaDB</span>
+                                <span class="metric-lbl">Vector Store</span>
+                            </div>
+                        </div>
+
+                        <div class="project-tech" style="margin-bottom: 1.5rem;">
+                            <span>Python</span>
+                            <span>NLP</span>
+                            <span>Poppler</span>
+                            <span>Haystack</span>
+                            <span>Mistral 7B LLM</span>
+                            <span>Vector Embeddings</span>
+                            <span>NFKC Normalization</span>
+                        </div>
+
+                        <!-- Native Case Study Accordion -->
+                        <details class="case-study-accordion purple-theme">
+                            <summary class="case-study-toggle-btn btn btn-secondary" style="border-color: var(--neon-purple); color: var(--neon-purple); background: rgba(139, 92, 246, 0.05);">
+                                <span class="summary-content" style="pointer-events: none; display: inline-flex; align-items: center; gap: 0.6rem;"><i class="fa-solid fa-square-plus"></i> Explore Full Technical Case Study</span>
+                            </summary>
+
+                            <div class="case-study-details-body">
+                                
+                                <!-- Section 1 -->
+                                <div class="case-study-section">
+                                    <h4 class="case-study-h4" style="color: var(--neon-purple);"><i class="fa-solid fa-bullseye"></i> 1. Technical Objective</h4>
+                                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                                        Design and deploy an end-to-end Retrieval-Augmented Generation (RAG) system capable of ingesting highly unstructured, complex legal contracts and enabling deterministic, sub-5 second semantic question-answering for non-technical stakeholders.
+                                    </p>
+                                </div>
+
+                                <!-- Section 2 -->
+                                <div class="case-study-section">
+                                    <h4 class="case-study-h4" style="color: var(--neon-purple);"><i class="fa-solid fa-file-pdf"></i> 2. Unstructured Data Ingestion & OCR Normalization</h4>
+                                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                                        Legal documents (PDFs and legacy Word files) are riddled with OCR artifacts, hidden tables, and inconsistent encoding. I engineered a Python-based extraction pipeline using Poppler to parse hierarchical bounding boxes. Crucially, I implemented strict Unicode NFKC (Normalization Form Compatibility Composition) to standardize structural text, resolving ligature anomalies and character encoding breaks that would otherwise destroy downstream tokenization.
+                                    </p>
+                                </div>
+
+                                <!-- Section 3 -->
+                                <div class="case-study-section">
+                                    <h4 class="case-study-h4" style="color: var(--neon-purple);"><i class="fa-solid fa-database"></i> 3. Semantic Vectorization & Context-Aware Chunking</h4>
+                                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                                        Standard text chunking routinely breaks the semantic meaning of long-form legal clauses. I developed a context-aware sliding-window chunking strategy with a 15% token overlap to preserve contiguous legal logic. These chunks were passed through an embedding model to generate dense semantic vectors, which were then indexed in a high-performance Vector Database (ChromaDB) for cosine-similarity retrieval.
+                                    </p>
+                                </div>
+
+                                <!-- Section 4 -->
+                                <div class="case-study-section">
+                                    <h4 class="case-study-h4" style="color: var(--neon-purple);"><i class="fa-solid fa-robot"></i> 4. LLM Orchestration & Generative Synthesis</h4>
+                                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                                        To orchestrate the RAG pipeline, I utilized the Haystack NLP framework to bridge the vector retriever and the generative model. I deployed the Mistral 7B open-weights LLM, utilizing custom system-prompt engineering to enforce strict boundaries, ensuring the model only generated answers based on the retrieved vector context to prevent legal hallucinations.
+                                    </p>
+                                </div>
+
+                                <!-- Section 5 -->
+                                <div class="case-study-section">
+                                    <h4 class="case-study-h4" style="color: var(--neon-purple);"><i class="fa-solid fa-chart-bar"></i> 5. Performance Metrics</h4>
+                                    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
+                                        The finalized semantic retrieval architecture drastically outperformed traditional keyword search:
+                                    </p>
+                                    <ul class="timeline-list" style="margin-top: 0.75rem;">
+                                        <li>
+                                            <strong>Search & Extraction Accuracy:</strong> Achieved a +75% boost in domain-specific retrieval accuracy.
+                                        </li>
+                                        <li>
+                                            <strong>Inference Latency:</strong> Optimized the vector search and generative synthesis to deliver reliable answers in &lt;5 seconds per query.
+                                        </li>
+                                        <li>
+                                            <strong>Tech Stack:</strong> Python, NLP, Poppler, Haystack, Mistral 7B, Vector Embeddings, NFKC Normalization.
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </details>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -666,6 +872,9 @@
                             </div>
                             <span style="color: var(--text-secondary); font-family: var(--font-mono); font-size: 0.95rem; background: rgba(255,255,255,0.05); padding: 0.3rem 0.8rem; border-radius: 4px; border: 1px solid var(--glass-border);">Expected Dec 2026 &bull; West Lafayette, IN</span>
                         </div>
+                        <p style="margin-top: 0.85rem; font-style: italic; color: var(--neon-cyan); font-size: 0.85rem; font-family: var(--font-mono);">
+                            &#8627; Note: For a deep-dive into the technical architecture and methodology of this role, please see the expanded case study in the Projects section.
+                        </p>
                     </div>
 
                     <!-- University of Cincinnati -->

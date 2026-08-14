@@ -1051,6 +1051,18 @@ details.case-study-accordion.yellow-theme[open] > summary {
     box-shadow: 0 0 25px var(--neon-yellow) !important;
 }
 
+details.case-study-accordion.pink-theme[open] > summary {
+    background: var(--neon-pink) !important;
+    color: var(--bg-dark) !important;
+    box-shadow: 0 0 25px var(--neon-pink) !important;
+}
+
+details.case-study-accordion.purple-theme[open] > summary {
+    background: var(--neon-purple) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 25px var(--neon-purple) !important;
+}
+
 .case-study-details-body {
     margin-top: 2rem;
     padding-top: 2rem;
