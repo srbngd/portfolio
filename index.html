@@ -291,98 +291,98 @@
                             <span>Azure NC-Series (NVIDIA A100)</span>
                         </div>
 
-                        <div class="case-study-toggle-wrapper">
-                            <button class="case-study-toggle-btn btn btn-secondary" onclick="toggleCaseStudy(this)" aria-expanded="false">
+                        <!-- Native Case Study Accordion -->
+                        <details class="case-study-accordion">
+                            <summary class="case-study-toggle-btn btn btn-secondary">
                                 <i class="fa-solid fa-square-plus"></i> Explore Full Technical Case Study
-                            </button>
-                        </div>
+                            </summary>
 
-                        <!-- Expandable Deep-Dive Details -->
-                        <div class="case-study-details">
-                            
-                            <!-- Section 1 -->
-                            <div class="case-study-section">
-                                <h4 class="case-study-h4"><i class="fa-solid fa-bullseye"></i> 1. Technical Objective</h4>
-                                <p style="color: var(--text-secondary); line-height: 1.8;">
-                                    Build a real-time, automated Natural Language Inference (NLI) engine to classify AI-generated educational answers, utilizing a highly optimized discriminative transformer to achieve sub-200ms latency and human-parity recall on hallucinations.
-                                </p>
-                            </div>
-
-                            <!-- Section 2 -->
-                            <div class="case-study-section">
-                                <h4 class="case-study-h4"><i class="fa-solid fa-diagram-project"></i> 2. Analytics Formulation & Data Engineering</h4>
-                                <p style="color: var(--text-secondary); line-height: 1.8;">
-                                    We framed the verification problem as a strict NLI classification task determining if a Hypothesis (the AI Answer) is entailed by, contradicts, or is irrelevant to a Premise (the Reference Context).
-                                </p>
-                                <div style="margin-top: 1rem; padding: 1.25rem; background: rgba(5, 12, 30, 0.6); border-radius: 12px; border-left: 3px solid var(--neon-cyan);">
-                                    <strong style="color: var(--text-primary); display: block; margin-bottom: 0.5rem;">Data Architecture & Cross-Attention Sequence Structuring:</strong>
-                                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.75rem;">
-                                        We processed a 21,021-sample educational Q&A dataset with a severe 10:1 class imbalance (82.9% Factual vs. 8.6% Contradiction). To force the model to capture relational semantics rather than simple keyword overlap, we engineered the input sequence to maximize self-attention across the context boundary:
-                                    </p>
-                                    <div class="tensor-code-block">[CLS] Q + A [SEP] Context [SEP]</div>
-                                    <p style="color: var(--text-secondary); line-height: 1.7;">
-                                        This specific tensor structure allows the Transformer's attention heads to directly weigh the generated claim against the source truth.
+                            <div class="case-study-details-body">
+                                
+                                <!-- Section 1 -->
+                                <div class="case-study-section">
+                                    <h4 class="case-study-h4"><i class="fa-solid fa-bullseye"></i> 1. Technical Objective</h4>
+                                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                                        Build a real-time, automated Natural Language Inference (NLI) engine to classify AI-generated educational answers, utilizing a highly optimized discriminative transformer to achieve sub-200ms latency and human-parity recall on hallucinations.
                                     </p>
                                 </div>
-                            </div>
 
-                            <!-- Section 3 -->
-                            <div class="case-study-section">
-                                <h4 class="case-study-h4"><i class="fa-solid fa-microchip"></i> 3. Methodology & Architecture</h4>
-                                <p style="color: var(--text-secondary); line-height: 1.8;">
-                                    We selected Microsoft's <strong>DeBERTa-v3-Large</strong> for its specific architectural advantages over standard generative LLMs or standard BERT variants:
-                                </p>
-                                <ul class="timeline-list" style="margin-top: 0.75rem; margin-bottom: 1rem;">
-                                    <li>
-                                        <strong>Disentangled Attention:</strong> DeBERTa separates content embeddings from relative position embeddings. This structural awareness allows the model to catch inverted logic or subtle negation swaps that standard BERT variants miss.
-                                    </li>
-                                    <li>
-                                        <strong>NLI-Optimized Pre-training:</strong> DeBERTa is explicitly pre-trained to measure semantic entailment natively.
-                                    </li>
-                                </ul>
-                                <p style="color: var(--text-secondary); line-height: 1.8;">
-                                    Moving from a traditional Logistic Regression baseline (83.5%) to standard BERT (91.4%) and finally to optimized DeBERTa yielded a <strong>+14.15% accuracy gain</strong>.
-                                </p>
-                            </div>
-
-                            <!-- Section 4 -->
-                            <div class="case-study-section">
-                                <h4 class="case-study-h4"><i class="fa-solid fa-layer-group"></i> 4. Model Building: Stratified Ensembling</h4>
-                                <p style="color: var(--text-secondary); line-height: 1.8;">
-                                    To eliminate variance and prevent majority-class bias, we implemented <strong>Stratified 5-Fold Cross-Validation</strong>, preserving the 10:1 imbalance across all splits. We preserved all 5 models to create an "Expert Committee", utilizing Soft Voting to average the probability distributions. This tightened the decision boundaries on nuanced contradictions, outperforming the best individual fold by ~0.2% and reducing the standard deviation to a mere ±0.19%.
-                                </p>
-                            </div>
-
-                            <!-- Section 5 -->
-                            <div class="case-study-section">
-                                <h4 class="case-study-h4"><i class="fa-solid fa-chart-line"></i> 5. Performance Results & Inference Infrastructure</h4>
-                                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
-                                    Validated on a blind test set of 4,200 samples:
-                                </p>
-                                <div class="case-study-metrics-grid" style="margin-bottom: 1.5rem;">
-                                    <div class="metric-card">
-                                        <span class="metric-val">98.28%</span>
-                                        <span class="metric-lbl">Overall Accuracy</span>
-                                    </div>
-                                    <div class="metric-card">
-                                        <span class="metric-val">98.73%</span>
-                                        <span class="metric-lbl">Safety Score (F1)</span>
-                                    </div>
-                                    <div class="metric-card">
-                                        <span class="metric-val">99.91%</span>
-                                        <span class="metric-lbl">Factual Recall</span>
-                                    </div>
-                                    <div class="metric-card">
-                                        <span class="metric-val">95.20%</span>
-                                        <span class="metric-lbl">Contradiction Recall</span>
+                                <!-- Section 2 -->
+                                <div class="case-study-section">
+                                    <h4 class="case-study-h4"><i class="fa-solid fa-diagram-project"></i> 2. Analytics Formulation & Data Engineering</h4>
+                                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                                        We framed the verification problem as a strict NLI classification task determining if a Hypothesis (the AI Answer) is entailed by, contradicts, or is irrelevant to a Premise (the Reference Context).
+                                    </p>
+                                    <div style="margin-top: 1rem; padding: 1.25rem; background: rgba(5, 12, 30, 0.6); border-radius: 12px; border-left: 3px solid var(--neon-cyan);">
+                                        <strong style="color: var(--text-primary); display: block; margin-bottom: 0.5rem;">Data Architecture & Cross-Attention Sequence Structuring:</strong>
+                                        <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.75rem;">
+                                            We processed a 21,021-sample educational Q&A dataset with a severe 10:1 class imbalance (82.9% Factual vs. 8.6% Contradiction). To force the model to capture relational semantics rather than simple keyword overlap, we engineered the input sequence to maximize self-attention across the context boundary:
+                                        </p>
+                                        <div class="tensor-code-block">[CLS] Q + A [SEP] Context [SEP]</div>
+                                        <p style="color: var(--text-secondary); line-height: 1.7;">
+                                            This specific tensor structure allows the Transformer's attention heads to directly weigh the generated claim against the source truth.
+                                        </p>
                                     </div>
                                 </div>
-                                <p style="color: var(--text-secondary); line-height: 1.8;">
-                                    The inference engine was deployed on <strong>Azure Managed Online Endpoints</strong> utilizing NC-Series VMs (NVIDIA A100 80GB). We implemented BF16 Precision Training/Inference and a shared cache architecture, reducing computational load by 30% and achieving strict real-time SLAs with <strong>&lt;200ms latency</strong>.
-                                </p>
-                            </div>
 
-                        </div>
+                                <!-- Section 3 -->
+                                <div class="case-study-section">
+                                    <h4 class="case-study-h4"><i class="fa-solid fa-microchip"></i> 3. Methodology & Architecture</h4>
+                                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                                        We selected Microsoft's <strong>DeBERTa-v3-Large</strong> for its specific architectural advantages over standard generative LLMs or standard BERT variants:
+                                    </p>
+                                    <ul class="timeline-list" style="margin-top: 0.75rem; margin-bottom: 1rem;">
+                                        <li>
+                                            <strong>Disentangled Attention:</strong> DeBERTa separates content embeddings from relative position embeddings. This structural awareness allows the model to catch inverted logic or subtle negation swaps that standard BERT variants miss.
+                                        </li>
+                                        <li>
+                                            <strong>NLI-Optimized Pre-training:</strong> DeBERTa is explicitly pre-trained to measure semantic entailment natively.
+                                        </li>
+                                    </ul>
+                                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                                        Moving from a traditional Logistic Regression baseline (83.5%) to standard BERT (91.4%) and finally to optimized DeBERTa yielded a <strong>+14.15% accuracy gain</strong>.
+                                    </p>
+                                </div>
+
+                                <!-- Section 4 -->
+                                <div class="case-study-section">
+                                    <h4 class="case-study-h4"><i class="fa-solid fa-layer-group"></i> 4. Model Building: Stratified Ensembling</h4>
+                                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                                        To eliminate variance and prevent majority-class bias, we implemented <strong>Stratified 5-Fold Cross-Validation</strong>, preserving the 10:1 imbalance across all splits. We preserved all 5 models to create an "Expert Committee", utilizing Soft Voting to average the probability distributions. This tightened the decision boundaries on nuanced contradictions, outperforming the best individual fold by ~0.2% and reducing the standard deviation to a mere ±0.19%.
+                                    </p>
+                                </div>
+
+                                <!-- Section 5 -->
+                                <div class="case-study-section">
+                                    <h4 class="case-study-h4"><i class="fa-solid fa-chart-line"></i> 5. Performance Results & Inference Infrastructure</h4>
+                                    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
+                                        Validated on a blind test set of 4,200 samples:
+                                    </p>
+                                    <div class="case-study-metrics-grid" style="margin-bottom: 1.5rem;">
+                                        <div class="metric-card">
+                                            <span class="metric-val">98.28%</span>
+                                            <span class="metric-lbl">Overall Accuracy</span>
+                                        </div>
+                                        <div class="metric-card">
+                                            <span class="metric-val">98.73%</span>
+                                            <span class="metric-lbl">Safety Score (F1)</span>
+                                        </div>
+                                        <div class="metric-card">
+                                            <span class="metric-val">99.91%</span>
+                                            <span class="metric-lbl">Factual Recall</span>
+                                        </div>
+                                        <div class="metric-card">
+                                            <span class="metric-val">95.20%</span>
+                                            <span class="metric-lbl">Contradiction Recall</span>
+                                        </div>
+                                    </div>
+                                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                                        The inference engine was deployed on <strong>Azure Managed Online Endpoints</strong> utilizing NC-Series VMs (NVIDIA A100 80GB). We implemented BF16 Precision Training/Inference and a shared cache architecture, reducing computational load by 30% and achieving strict real-time SLAs with <strong>&lt;200ms latency</strong>.
+                                    </p>
+                                </div>
+
+                            </div>
+                        </details>
                     </div>
 
                     <!-- Project 2: Kaggle Bankruptcy Evolutionary Ensemble -->
@@ -425,125 +425,125 @@
                             <span>Python / Scikit-Learn</span>
                         </div>
 
-                        <div class="case-study-toggle-wrapper">
-                            <button class="case-study-toggle-btn btn btn-secondary" onclick="toggleCaseStudy(this)" aria-expanded="false" style="border-color: var(--neon-yellow); color: var(--neon-yellow); background: rgba(255, 214, 10, 0.05);">
+                        <!-- Native Case Study Accordion -->
+                        <details class="case-study-accordion yellow-theme">
+                            <summary class="case-study-toggle-btn btn btn-secondary" style="border-color: var(--neon-yellow); color: var(--neon-yellow); background: rgba(255, 214, 10, 0.05);">
                                 <i class="fa-solid fa-square-plus"></i> Explore Full Technical Case Study
-                            </button>
-                        </div>
+                            </summary>
 
-                        <!-- Expandable Deep-Dive Details -->
-                        <div class="case-study-details">
+                            <div class="case-study-details-body">
 
-                            <!-- Section 1 -->
-                            <div class="case-study-section">
-                                <h4 class="case-study-h4" style="color: var(--neon-yellow);"><i class="fa-solid fa-bullseye"></i> 1. Technical Objective</h4>
-                                <p style="color: var(--text-secondary); line-height: 1.8;">
-                                    Design a predictive classification architecture to handle extreme class imbalance, high-dimensional noise, and complex non-linear relationships in corporate financial telemetry. We engineered a 3-stage super-ensemble combining Bootstrap Aggregating (Bagging) with a custom Evolutionary Genetic Algorithm, achieving 1st place.
-                                </p>
-                            </div>
+                                <!-- Section 1 -->
+                                <div class="case-study-section">
+                                    <h4 class="case-study-h4" style="color: var(--neon-yellow);"><i class="fa-solid fa-bullseye"></i> 1. Technical Objective</h4>
+                                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                                        Design a predictive classification architecture to handle extreme class imbalance, high-dimensional noise, and complex non-linear relationships in corporate financial telemetry. We engineered a 3-stage super-ensemble combining Bootstrap Aggregating (Bagging) with a custom Evolutionary Genetic Algorithm, achieving 1st place.
+                                    </p>
+                                </div>
 
-                            <!-- Section 2 -->
-                            <div class="case-study-section">
-                                <h4 class="case-study-h4" style="color: var(--neon-yellow);"><i class="fa-solid fa-sitemap"></i> 2. The Architecture: A 3-Stage Super-Ensemble</h4>
-                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem;">
-                                    <div style="padding: 1.25rem; background: rgba(5, 12, 30, 0.6); border-radius: 10px; border-top: 3px solid var(--neon-cyan);">
-                                        <strong style="color: var(--neon-cyan); display: block; font-family: var(--font-mono); margin-bottom: 0.5rem;">Level 1: Bagging Layer</strong>
-                                        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">10 XGBoost models + 10 LightGBM models trained across distinct random seeds & 5-Fold CV.</p>
-                                    </div>
-                                    <div style="padding: 1.25rem; background: rgba(5, 12, 30, 0.6); border-radius: 10px; border-top: 3px solid var(--neon-yellow);">
-                                        <strong style="color: var(--neon-yellow); display: block; font-family: var(--font-mono); margin-bottom: 0.5rem;">Level 2: Evolutionary Layer</strong>
-                                        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">1 Custom Evolutionary XGBoost (EXGB) model generating synthetic features via crossover & mutation.</p>
-                                    </div>
-                                    <div style="padding: 1.25rem; background: rgba(5, 12, 30, 0.6); border-radius: 10px; border-top: 3px solid var(--neon-purple);">
-                                        <strong style="color: var(--neon-purple); display: block; font-family: var(--font-mono); margin-bottom: 0.5rem;">Level 3: Meta-Learner</strong>
-                                        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">Logistic Regression stacker acting as a calibrated Judge over the 21 OOF probability matrix.</p>
+                                <!-- Section 2 -->
+                                <div class="case-study-section">
+                                    <h4 class="case-study-h4" style="color: var(--neon-yellow);"><i class="fa-solid fa-sitemap"></i> 2. The Architecture: A 3-Stage Super-Ensemble</h4>
+                                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                                        <div style="padding: 1.25rem; background: rgba(5, 12, 30, 0.6); border-radius: 10px; border-top: 3px solid var(--neon-cyan);">
+                                            <strong style="color: var(--neon-cyan); display: block; font-family: var(--font-mono); margin-bottom: 0.5rem;">Level 1: Bagging Layer</strong>
+                                            <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">10 XGBoost models + 10 LightGBM models trained across distinct random seeds & 5-Fold CV.</p>
+                                        </div>
+                                        <div style="padding: 1.25rem; background: rgba(5, 12, 30, 0.6); border-radius: 10px; border-top: 3px solid var(--neon-yellow);">
+                                            <strong style="color: var(--neon-yellow); display: block; font-family: var(--font-mono); margin-bottom: 0.5rem;">Level 2: Evolutionary Layer</strong>
+                                            <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">1 Custom Evolutionary XGBoost (EXGB) model generating synthetic features via crossover & mutation.</p>
+                                        </div>
+                                        <div style="padding: 1.25rem; background: rgba(5, 12, 30, 0.6); border-radius: 10px; border-top: 3px solid var(--neon-purple);">
+                                            <strong style="color: var(--neon-purple); display: block; font-family: var(--font-mono); margin-bottom: 0.5rem;">Level 3: Meta-Learner</strong>
+                                            <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">Logistic Regression stacker acting as a calibrated Judge over the 21 OOF probability matrix.</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- Section 3 -->
-                            <div class="case-study-section">
-                                <h4 class="case-study-h4" style="color: var(--neon-yellow);"><i class="fa-solid fa-filter"></i> 3. Phase 1: Dual-Imputation Strategy</h4>
-                                <p style="color: var(--text-secondary); line-height: 1.8;">
-                                    We routed data through two distinct imputation pipelines based on downstream algorithmic processing:
-                                </p>
-                                <ul class="timeline-list" style="margin-top: 0.75rem;">
-                                    <li>
-                                        <strong>Pipeline A (Standard Trees) - Constant Imputation (-999):</strong> For XGBoost/LightGBM, we filled NaN values with -999. Gradient boosting decision trees build binary splits and natively learn to treat -999 as a distinct categorical branch, preserving the structural signal of missingness.
-                                    </li>
-                                    <li>
-                                        <strong>Pipeline B (Evolutionary Model) - Median Imputation:</strong> The EXGB model generates synthetic features via mathematical combination. Using a -999 constant would create massive artificial outliers, destroying linear relationships. We utilized Median imputation as a mathematically neutral baseline here.
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <!-- Section 4 -->
-                            <div class="case-study-section">
-                                <h4 class="case-study-h4" style="color: var(--neon-yellow);"><i class="fa-solid fa-scissors"></i> 4. Phase 2: Brute-Force Engineering & "Scout" Reduction</h4>
-                                <ul class="timeline-list">
-                                    <li>
-                                        <strong>Synthetic Generation:</strong> We applied a brute-force interaction approach, calculating pairwise arithmetic operations across all raw columns to expand our feature space to over 16,000 synthetic ratios.
-                                    </li>
-                                    <li>
-                                        <strong>Scout Model Reduction:</strong> To conquer the Curse of Dimensionality, we trained a fast, shallow "Scout" XGBoost model (<code>eta: 0.1</code>, <code>max_depth: 3</code>, <code>100 rounds</code>). We extracted the Information Gain of all 16,000 features and aggressively pruned the dataset down to the top 321 most predictive signals.
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <!-- Section 5 -->
-                            <div class="case-study-section">
-                                <h4 class="case-study-h4" style="color: var(--neon-yellow);"><i class="fa-solid fa-seedling"></i> 5. Phase 3: The Bagging Layer (Variance Reduction)</h4>
-                                <p style="color: var(--text-secondary); line-height: 1.8;">
-                                    We utilized Bootstrap Aggregating (Bagging) across distinct random seeds to eliminate model instability caused by noisy tabular data:
-                                </p>
-                                <ul class="timeline-list" style="margin-top: 0.75rem;">
-                                    <li>Trained 10 XGBoost models (<code>L2 Reg: 20.0</code>, <code>L1 Reg: 5.0</code>, <code>max_depth: 4</code>) on 10 different seeds.</li>
-                                    <li>Trained 10 LightGBM models on 10 different seeds.</li>
-                                </ul>
-                                <p style="color: var(--text-secondary); line-height: 1.8; margin-top: 0.75rem;">
-                                    Every seed was trained using 5-Fold Stratified Cross-Validation, executing over 100 individual training runs and averaging the Out-Of-Fold (OOF) predictions.
-                                </p>
-                            </div>
-
-                            <!-- Section 6 -->
-                            <div class="case-study-section">
-                                <h4 class="case-study-h4" style="color: var(--neon-yellow);"><i class="fa-solid fa-dna"></i> 6. Phase 4: Evolutionary XGBoost (EXGB)</h4>
-                                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 0.75rem;">
-                                    We developed EXGB—a genetic algorithm wrapper around a boosting framework—to dynamically hunt for non-linear interactions during training:
-                                </p>
-                                <div style="padding: 1.25rem; background: rgba(5, 12, 30, 0.7); border-radius: 12px; border: 1px solid rgba(255, 214, 10, 0.2);">
-                                    <ol style="padding-left: 1.25rem; color: var(--text-secondary); line-height: 1.8;">
-                                        <li><strong style="color: var(--text-primary);">Initialize:</strong> Start with an ensemble of 10 learners.</li>
-                                        <li><strong style="color: var(--text-primary);">Train & Extract:</strong> Train the first learner for 100 rounds. Extract the top 15 features based on weight importance (Parents).</li>
-                                        <li><strong style="color: var(--text-primary);">Crossover & Mutation:</strong> Generate 60 new synthetic features by randomly selecting two Parent features and applying a random arithmetic operator.</li>
-                                        <li><strong style="color: var(--text-primary);">Survival:</strong> Append these 60 "Child" features to the dataset for the next learner. If a child feature improves the gradient, the next tree uses it; if it is noise, it is ignored.</li>
-                                    </ol>
+                                <!-- Section 3 -->
+                                <div class="case-study-section">
+                                    <h4 class="case-study-h4" style="color: var(--neon-yellow);"><i class="fa-solid fa-filter"></i> 3. Phase 1: Dual-Imputation Strategy</h4>
+                                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                                        We routed data through two distinct imputation pipelines based on downstream algorithmic processing:
+                                    </p>
+                                    <ul class="timeline-list" style="margin-top: 0.75rem;">
+                                        <li>
+                                            <strong>Pipeline A (Standard Trees) - Constant Imputation (-999):</strong> For XGBoost/LightGBM, we filled NaN values with -999. Gradient boosting decision trees build binary splits and natively learn to treat -999 as a distinct categorical branch, preserving the structural signal of missingness.
+                                        </li>
+                                        <li>
+                                            <strong>Pipeline B (Evolutionary Model) - Median Imputation:</strong> The EXGB model generates synthetic features via mathematical combination. Using a -999 constant would create massive artificial outliers, destroying linear relationships. We utilized Median imputation as a mathematically neutral baseline here.
+                                        </li>
+                                    </ul>
                                 </div>
-                            </div>
 
-                            <!-- Section 7 -->
-                            <div class="case-study-section">
-                                <h4 class="case-study-h4" style="color: var(--neon-yellow);"><i class="fa-solid fa-gavel"></i> 7. Phase 5: The Meta-Learner (Stacking) & Results</h4>
-                                <p style="color: var(--text-secondary); line-height: 1.8;">
-                                    We concatenated the Out-Of-Fold predictions from our 21 models (10 XGBoost, 10 LightGBM, 1 EXGB) into a 21-dimensional meta-feature matrix. This was fed into a Logistic Regression model (<code>solver='liblinear'</code>, <code>C=0.05</code>) which acted as a "Judge," outputting the final calibrated probability of insolvency.
-                                </p>
-                                <div class="case-study-metrics-grid" style="margin-top: 1.5rem;">
-                                    <div class="metric-card" style="border-color: rgba(255, 214, 10, 0.3);">
-                                        <span class="metric-val" style="color: var(--neon-yellow);">0.9493</span>
-                                        <span class="metric-lbl">Final ROC-AUC</span>
-                                    </div>
-                                    <div class="metric-card" style="border-color: rgba(255, 214, 10, 0.3);">
-                                        <span class="metric-val" style="color: var(--neon-yellow);">5-Fold</span>
-                                        <span class="metric-lbl">Stratified CV</span>
-                                    </div>
-                                    <div class="metric-card" style="border-color: rgba(255, 214, 10, 0.3);">
-                                        <span class="metric-val" style="color: var(--neon-yellow);">Python / XGB</span>
-                                        <span class="metric-lbl">Tech Stack</span>
+                                <!-- Section 4 -->
+                                <div class="case-study-section">
+                                    <h4 class="case-study-h4" style="color: var(--neon-yellow);"><i class="fa-solid fa-scissors"></i> 4. Phase 2: Brute-Force Engineering & "Scout" Reduction</h4>
+                                    <ul class="timeline-list">
+                                        <li>
+                                            <strong>Synthetic Generation:</strong> We applied a brute-force interaction approach, calculating pairwise arithmetic operations across all raw columns to expand our feature space to over 16,000 synthetic ratios.
+                                        </li>
+                                        <li>
+                                            <strong>Scout Model Reduction:</strong> To conquer the Curse of Dimensionality, we trained a fast, shallow "Scout" XGBoost model (<code>eta: 0.1</code>, <code>max_depth: 3</code>, <code>100 rounds</code>). We extracted the Information Gain of all 16,000 features and aggressively pruned the dataset down to the top 321 most predictive signals.
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- Section 5 -->
+                                <div class="case-study-section">
+                                    <h4 class="case-study-h4" style="color: var(--neon-yellow);"><i class="fa-solid fa-seedling"></i> 5. Phase 3: The Bagging Layer (Variance Reduction)</h4>
+                                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                                        We utilized Bootstrap Aggregating (Bagging) across distinct random seeds to eliminate model instability caused by noisy tabular data:
+                                    </p>
+                                    <ul class="timeline-list" style="margin-top: 0.75rem;">
+                                        <li>Trained 10 XGBoost models (<code>L2 Reg: 20.0</code>, <code>L1 Reg: 5.0</code>, <code>max_depth: 4</code>) on 10 different seeds.</li>
+                                        <li>Trained 10 LightGBM models on 10 different seeds.</li>
+                                    </ul>
+                                    <p style="color: var(--text-secondary); line-height: 1.8; margin-top: 0.75rem;">
+                                        Every seed was trained using 5-Fold Stratified Cross-Validation, executing over 100 individual training runs and averaging the Out-Of-Fold (OOF) predictions.
+                                    </p>
+                                </div>
+
+                                <!-- Section 6 -->
+                                <div class="case-study-section">
+                                    <h4 class="case-study-h4" style="color: var(--neon-yellow);"><i class="fa-solid fa-dna"></i> 6. Phase 4: Evolutionary XGBoost (EXGB)</h4>
+                                    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 0.75rem;">
+                                        We developed EXGB—a genetic algorithm wrapper around a boosting framework—to dynamically hunt for non-linear interactions during training:
+                                    </p>
+                                    <div style="padding: 1.25rem; background: rgba(5, 12, 30, 0.7); border-radius: 12px; border: 1px solid rgba(255, 214, 10, 0.2);">
+                                        <ol style="padding-left: 1.25rem; color: var(--text-secondary); line-height: 1.8;">
+                                            <li><strong style="color: var(--text-primary);">Initialize:</strong> Start with an ensemble of 10 learners.</li>
+                                            <li><strong style="color: var(--text-primary);">Train & Extract:</strong> Train the first learner for 100 rounds. Extract the top 15 features based on weight importance (Parents).</li>
+                                            <li><strong style="color: var(--text-primary);">Crossover & Mutation:</strong> Generate 60 new synthetic features by randomly selecting two Parent features and applying a random arithmetic operator.</li>
+                                            <li><strong style="color: var(--text-primary);">Survival:</strong> Append these 60 "Child" features to the dataset for the next learner. If a child feature improves the gradient, the next tree uses it; if it is noise, it is ignored.</li>
+                                        </ol>
                                     </div>
                                 </div>
-                            </div>
 
-                        </div>
+                                <!-- Section 7 -->
+                                <div class="case-study-section">
+                                    <h4 class="case-study-h4" style="color: var(--neon-yellow);"><i class="fa-solid fa-gavel"></i> 7. Phase 5: The Meta-Learner (Stacking) & Results</h4>
+                                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                                        We concatenated the Out-Of-Fold predictions from our 21 models (10 XGBoost, 10 LightGBM, 1 EXGB) into a 21-dimensional meta-feature matrix. This was fed into a Logistic Regression model (<code>solver='liblinear'</code>, <code>C=0.05</code>) which acted as a "Judge," outputting the final calibrated probability of insolvency.
+                                    </p>
+                                    <div class="case-study-metrics-grid" style="margin-top: 1.5rem;">
+                                        <div class="metric-card" style="border-color: rgba(255, 214, 10, 0.3);">
+                                            <span class="metric-val" style="color: var(--neon-yellow);">0.9493</span>
+                                            <span class="metric-lbl">Final ROC-AUC</span>
+                                        </div>
+                                        <div class="metric-card" style="border-color: rgba(255, 214, 10, 0.3);">
+                                            <span class="metric-val" style="color: var(--neon-yellow);">5-Fold</span>
+                                            <span class="metric-lbl">Stratified CV</span>
+                                        </div>
+                                        <div class="metric-card" style="border-color: rgba(255, 214, 10, 0.3);">
+                                            <span class="metric-val" style="color: var(--neon-yellow);">Python / XGB</span>
+                                            <span class="metric-lbl">Tech Stack</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </details>
                     </div>
 
                     <!-- Project 3: Asset Pricing -->

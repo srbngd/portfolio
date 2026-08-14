@@ -1001,15 +1001,16 @@ h6 {
     letter-spacing: 0.05em;
 }
 
-.case-study-toggle-wrapper {
-    margin-top: 1.75rem;
-    margin-bottom: 0.5rem;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+/* Native Case Study Accordion */
+details.case-study-accordion {
+    margin-top: 1.5rem;
+    width: 100%;
 }
 
-.case-study-toggle-btn {
+details.case-study-accordion > summary {
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1018,21 +1019,32 @@ h6 {
     font-size: 0.85rem;
     font-family: var(--font-mono);
     border-radius: 50px;
-    cursor: pointer;
     transition: all 0.3s ease;
-    user-select: none;
+    width: fit-content;
+    outline: none;
 }
 
-.case-study-details {
+details.case-study-accordion > summary::-webkit-details-marker,
+details.case-study-accordion > summary::marker {
+    display: none !important;
+}
+
+details.case-study-accordion[open] > summary {
+    background: var(--neon-cyan);
+    color: var(--bg-dark);
+    box-shadow: 0 0 25px var(--neon-cyan);
+}
+
+details.case-study-accordion.yellow-theme[open] > summary {
+    background: var(--neon-yellow) !important;
+    color: var(--bg-dark) !important;
+    box-shadow: 0 0 25px var(--neon-yellow) !important;
+}
+
+.case-study-details-body {
     margin-top: 2rem;
     padding-top: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    display: none;
-    transition: all 0.4s ease-in-out;
-}
-
-.case-study-details.expanded {
-    display: block !important;
     animation: fadeIn 0.4s ease-in-out;
 }
 
