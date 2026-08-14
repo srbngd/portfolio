@@ -1005,11 +1005,14 @@ h6 {
 details.case-study-accordion {
     margin-top: 1.5rem;
     width: 100%;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto !important;
 }
 
 details.case-study-accordion > summary {
     list-style: none;
-    cursor: pointer;
+    cursor: pointer !important;
     user-select: none;
     display: inline-flex;
     align-items: center;
@@ -1022,6 +1025,9 @@ details.case-study-accordion > summary {
     transition: all 0.3s ease;
     width: fit-content;
     outline: none;
+    position: relative;
+    z-index: 100;
+    pointer-events: auto !important;
 }
 
 details.case-study-accordion > summary::-webkit-details-marker,
@@ -1046,6 +1052,9 @@ details.case-study-accordion.yellow-theme[open] > summary {
     padding-top: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     animation: fadeIn 0.4s ease-in-out;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto !important;
 }
 
 @keyframes fadeIn {
@@ -1080,8 +1089,6 @@ details.case-study-accordion.yellow-theme[open] > summary {
     box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
 }
 
-
-
 .project-card::after {
     content: '';
     position: absolute;
@@ -1093,6 +1100,7 @@ details.case-study-accordion.yellow-theme[open] > summary {
     opacity: 0;
     transition: opacity 0.4s;
     z-index: -1;
+    pointer-events: none !important;
 }
 
 .project-card:hover::after {
