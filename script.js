@@ -126,12 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (isExpanded) {
             details.classList.remove('expanded');
-            card.classList.remove('expanded-card');
             btn.setAttribute('aria-expanded', 'false');
             btn.innerHTML = '<i class="fa-solid fa-square-plus"></i> Explore Full Technical Case Study';
         } else {
             details.classList.add('expanded');
-            card.classList.add('expanded-card');
             btn.setAttribute('aria-expanded', 'true');
             btn.innerHTML = '<i class="fa-solid fa-square-minus"></i> Collapse Technical Case Study';
         }
