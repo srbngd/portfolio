@@ -122,14 +122,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const details = card.querySelector('.case-study-details');
         if (!details) return;
 
-        const isExpanded = details.classList.contains('expanded');
+        const isExpanded = details.classList.contains('expanded') || details.style.display === 'block';
 
         if (isExpanded) {
             details.classList.remove('expanded');
+            details.style.display = 'none';
             btn.setAttribute('aria-expanded', 'false');
             btn.innerHTML = '<i class="fa-solid fa-square-plus"></i> Explore Full Technical Case Study';
         } else {
             details.classList.add('expanded');
+            details.style.display = 'block';
             btn.setAttribute('aria-expanded', 'true');
             btn.innerHTML = '<i class="fa-solid fa-square-minus"></i> Collapse Technical Case Study';
         }
