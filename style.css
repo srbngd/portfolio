@@ -1074,11 +1074,19 @@ h6 {
 }
 
 .project-card:nth-child(1) {
-    grid-column: span 12;
+    grid-column: span 7;
 }
 
 .project-card:nth-child(2) {
+    grid-column: span 5;
+}
+
+.project-card:nth-child(3) {
     grid-column: span 12;
+}
+
+.project-card.expanded-card {
+    grid-column: span 12 !important;
 }
 
 .project-card::after {

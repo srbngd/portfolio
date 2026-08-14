@@ -110,26 +110,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Case Study Toggle Event Listeners
-    document.querySelectorAll('.case-study-toggle-btn').forEach(btn => {
-        btn.addEventListener('click', function (e) {
-            e.preventDefault();
-            const card = this.closest('.project-card');
-            if (!card) return;
-            const details = card.querySelector('.case-study-details');
-            if (!details) return;
+    // Case Study Toggle Event Delegation (Always works)
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.case-study-toggle-btn');
+        if (!btn) return;
+        e.preventDefault();
 
-            const isExpanded = details.classList.contains('expanded');
+        const card = btn.closest('.project-card');
+        if (!card) return;
 
-            if (isExpanded) {
-                details.classList.remove('expanded');
-                this.setAttribute('aria-expanded', 'false');
-                this.innerHTML = '<i class="fa-solid fa-square-plus"></i> Explore Full Technical Case Study';
-            } else {
-                details.classList.add('expanded');
-                this.setAttribute('aria-expanded', 'true');
-                this.innerHTML = '<i class="fa-solid fa-square-minus"></i> Collapse Technical Case Study';
-            }
-        });
+        const details = card.querySelector('.case-study-details');
+        if (!details) return;
+
+        const isExpanded = details.classList.contains('expanded');
+
+        if (isExpanded) {
+            details.classList.remove('expanded');
+            card.classList.remove('expanded-card');
+            btn.setAttribute('aria-expanded', 'false');
+            btn.innerHTML = '<i class="fa-solid fa-square-plus"></i> Explore Full Technical Case Study';
+        } else {
+            details.classList.add('expanded');
+            card.classList.add('expanded-card');
+            btn.setAttribute('aria-expanded', 'true');
+            btn.innerHTML = '<i class="fa-solid fa-square-minus"></i> Collapse Technical Case Study';
+        }
     });
 });
