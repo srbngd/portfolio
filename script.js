@@ -136,3 +136,38 @@ document.addEventListener('toggle', (e) => {
         }
     }
 }, true);
+
+// Copy Email & Toast Notification Handler
+function copyEmail(e, email) {
+    if (!email) email = 'sbangad@purdue.edu';
+    
+    // Copy to clipboard
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email);
+    } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = email;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+    }
+
+    // Show visual notification Toast
+    let toast = document.getElementById('email-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'email-toast';
+        toast.style.cssText = 'position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #050c1e; border: 2px solid var(--neon-cyan); color: var(--neon-cyan); padding: 0.8rem 1.6rem; border-radius: 50px; font-family: var(--font-mono); font-size: 0.9rem; box-shadow: 0 0 25px rgba(0, 240, 255, 0.4); z-index: 10000; transition: opacity 0.3s ease-in-out; opacity: 0; pointer-events: none;';
+        document.body.appendChild(toast);
+    }
+
+    toast.innerHTML = `<i class="fa-solid fa-circle-check" style="margin-right: 6px;"></i> Email copied: <strong style="color: #fff;">${email}</strong>`;
+    toast.style.opacity = '1';
+
+    setTimeout(() => {
+        toast.style.opacity = '0';
+    }, 3000);
+}
+
+window.copyEmail = copyEmail;
