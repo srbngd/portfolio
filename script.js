@@ -112,15 +112,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+// Explicit click dispatcher for summary elements (fixes WebKit Shadow DOM target bugs)
+document.addEventListener('click', (e) => {
+    const summary = e.target.closest('.case-study-accordion summary');
+    if (!summary) return;
+    const details = summary.closest('details');
+    if (!details) return;
+
+    e.preventDefault();
+    details.open = !details.open;
+});
+
 // Native details toggle icon and text update
 document.addEventListener('toggle', (e) => {
     if (e.target && e.target.classList.contains('case-study-accordion')) {
         const summary = e.target.querySelector('summary');
         if (summary) {
             if (e.target.open) {
-                summary.innerHTML = '<i class="fa-solid fa-square-minus"></i> Collapse Technical Case Study';
+                summary.innerHTML = '<span class="summary-content" style="pointer-events: none; display: inline-flex; align-items: center; gap: 0.6rem;"><i class="fa-solid fa-square-minus"></i> Collapse Technical Case Study</span>';
             } else {
-                summary.innerHTML = '<i class="fa-solid fa-square-plus"></i> Explore Full Technical Case Study';
+                summary.innerHTML = '<span class="summary-content" style="pointer-events: none; display: inline-flex; align-items: center; gap: 0.6rem;"><i class="fa-solid fa-square-plus"></i> Explore Full Technical Case Study</span>';
             }
         }
     }
