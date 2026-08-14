@@ -957,12 +957,106 @@ h6 {
     overflow: hidden;
 }
 
+.project-card.full-width {
+    grid-column: span 12 !important;
+}
+
+.case-study-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    background: rgba(0, 240, 255, 0.08);
+    border: 1px solid var(--neon-cyan);
+    border-radius: 20px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--neon-cyan);
+    margin-bottom: 0.75rem;
+}
+
+.case-study-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.metric-card {
+    background: rgba(5, 12, 30, 0.7);
+    border: 1px solid rgba(0, 240, 255, 0.25);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    text-align: center;
+}
+
+.metric-val {
+    font-family: var(--font-mono);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--neon-cyan);
+    display: block;
+    margin-bottom: 0.2rem;
+}
+
+.metric-lbl {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.case-study-details {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: none;
+    transition: all 0.4s ease-in-out;
+}
+
+.case-study-details.expanded {
+    display: block;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.case-study-section {
+    margin-bottom: 2rem;
+}
+
+.case-study-h4 {
+    font-size: 1.25rem;
+    color: var(--neon-cyan);
+    margin-bottom: 0.75rem;
+    font-family: var(--font-heading);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tensor-code-block {
+    background: rgba(2, 8, 20, 0.95);
+    border: 1px solid var(--neon-cyan);
+    border-radius: 8px;
+    padding: 0.8rem 1.25rem;
+    font-family: var(--font-mono);
+    color: var(--neon-cyan);
+    font-size: 0.95rem;
+    margin: 0.75rem 0;
+    display: inline-block;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+}
+
 .project-card:nth-child(1) {
-    grid-column: span 7;
+    grid-column: span 12;
 }
 
 .project-card:nth-child(2) {
-    grid-column: span 5;
+    grid-column: span 12;
 }
 
 .project-card::after {
