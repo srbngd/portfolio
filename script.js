@@ -1,173 +1,234 @@
+/* ==========================================================================
+   Shiv Raj Bangad - Portfolio Interactivity Script
+   Theme Switcher, Project Filtering, Smooth Scrolling, & Recruiter Features
+   ========================================================================== */
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Hamburger Menu Toggle
+    // ----------------------------------------------------------------------
+    // 1. Dark / Light Mode Theme Toggle
+    // ----------------------------------------------------------------------
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+
+    // Detect saved theme or system preference
+    const savedTheme = localStorage.getItem('srb-portfolio-theme');
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+
+    function applyTheme(theme) {
+        htmlElement.setAttribute('data-theme', theme);
+        localStorage.setItem('srb-portfolio-theme', theme);
+
+        if (themeToggleBtn) {
+            const icon = themeToggleBtn.querySelector('i');
+            if (icon) {
+                if (theme === 'light') {
+                    icon.className = 'fa-solid fa-moon';
+                    themeToggleBtn.setAttribute('title', 'Switch to Dark Mode');
+                    themeToggleBtn.setAttribute('aria-label', 'Switch to Dark Mode');
+                } else {
+                    icon.className = 'fa-solid fa-sun';
+                    themeToggleBtn.setAttribute('title', 'Switch to Light Mode');
+                    themeToggleBtn.setAttribute('aria-label', 'Switch to Light Mode');
+                }
+            }
+        }
+    }
+
+    if (savedTheme) {
+        applyTheme(savedTheme);
+    } else if (prefersLight) {
+        applyTheme('light');
+    } else {
+        applyTheme('dark');
+    }
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme') || 'dark';
+            const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(nextTheme);
+        });
+    }
+
+    // ----------------------------------------------------------------------
+    // 2. Mobile Hamburger Navigation
+    // ----------------------------------------------------------------------
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
 
-    if (hamburger) {
+    if (hamburger && navLinks) {
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
         });
 
-        // Close menu when a link is clicked
-        document.querySelectorAll('.nav-link').forEach(link => {
+        // Close when nav link is clicked
+        navLinks.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 navLinks.classList.remove('active');
             });
         });
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
     }
 
-    // Smooth scrolling for navigation links
+    // ----------------------------------------------------------------------
+    // 3. Smooth Scrolling & Active Nav Highlighting
+    // ----------------------------------------------------------------------
+    const navLinksList = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section[id]');
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
+            if (targetId === '#' || targetId === '') return;
 
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
-                targetElement.scrollIntoView({
+                e.preventDefault();
+                const navHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 76;
+                const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = elementPosition - (navHeight + 10);
+
+                window.scrollTo({
+                    top: offsetPosition,
                     behavior: 'smooth'
                 });
-
-                // Update active state
-                document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-                this.classList.add('active');
             }
         });
     });
-
-    // Reveal animations on scroll
-    const observerOptions = {
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px"
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target); // Only animate once
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.reveal').forEach(section => {
-        observer.observe(section);
-    });
-
-    // Navbar scroll effect
-    const navbar = document.querySelector('.navbar');
-    let lastScrollY = window.scrollY;
 
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(5, 10, 20, 0.95)';
-            navbar.style.boxShadow = '0 10px 30px -10px rgba(2, 12, 27, 0.7)';
-        } else {
-            navbar.style.background = 'rgba(5, 10, 20, 0.8)';
-            navbar.style.boxShadow = 'none';
-        }
-        lastScrollY = window.scrollY;
-
-        // Update active navigation link based on scroll position
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
-
         let currentSection = '';
-        let closestSection = '';
-        let minDistance = Infinity;
+        const scrollPosition = window.pageYOffset + 120;
 
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            const sectionBottom = sectionTop + sectionHeight;
-            const scrollPosition = window.scrollY + 150; // Offset for navbar
-
-            // Find the section we're currently in
-            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            const sectionHeight = section.offsetHeight;
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
                 currentSection = section.getAttribute('id');
-            }
-
-            // Find the closest section as a fallback
-            const distance = Math.abs(scrollPosition - sectionTop);
-            if (distance < minDistance) {
-                minDistance = distance;
-                closestSection = section.getAttribute('id');
             }
         });
 
-        // Use currentSection if found, otherwise use closestSection
-        const activeSection = currentSection || closestSection;
-
-        // Update active class on nav links - only one at a time
-        navLinks.forEach(link => {
+        navLinksList.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('href') === `#${activeSection}`) {
+            if (link.getAttribute('href') === `#${currentSection}`) {
                 link.classList.add('active');
             }
         });
     });
 
-});
+    // ----------------------------------------------------------------------
+    // 4. Project Category Filtering
+    // ----------------------------------------------------------------------
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
 
-// Explicit click dispatcher for summary elements (fixes WebKit Shadow DOM target bugs)
-document.addEventListener('click', (e) => {
-    const summary = e.target.closest('.case-study-accordion summary');
-    if (!summary) return;
-    const details = summary.closest('details');
-    if (!details) return;
+    if (filterButtons.length > 0 && projectCards.length > 0) {
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
 
-    e.preventDefault();
-    details.open = !details.open;
-});
+                const filter = btn.getAttribute('data-filter');
 
-// Native details toggle icon and text update
-document.addEventListener('toggle', (e) => {
-    if (e.target && e.target.classList.contains('case-study-accordion')) {
-        const summary = e.target.querySelector('summary');
-        if (summary) {
-            if (e.target.open) {
-                summary.innerHTML = '<span class="summary-content" style="pointer-events: none; display: inline-flex; align-items: center; gap: 0.6rem;"><i class="fa-solid fa-square-minus"></i> Collapse Technical Case Study</span>';
+                projectCards.forEach(card => {
+                    const categories = card.getAttribute('data-category') || '';
+                    if (filter === 'all' || categories.split(' ').includes(filter)) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(10px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 200);
+                    }
+                });
+            });
+        });
+    }
+
+    // ----------------------------------------------------------------------
+    // 5. Deep Dive Details Drawer Text Updating
+    // ----------------------------------------------------------------------
+    document.querySelectorAll('.deep-dive-details').forEach(details => {
+        details.addEventListener('toggle', () => {
+            const summaryBtn = details.querySelector('.drawer-toggle-btn');
+            if (!summaryBtn) return;
+
+            if (details.open) {
+                summaryBtn.innerHTML = '<i class="fa-solid fa-chevron-up"></i> Hide Technical Deep-Dive';
             } else {
-                summary.innerHTML = '<span class="summary-content" style="pointer-events: none; display: inline-flex; align-items: center; gap: 0.6rem;"><i class="fa-solid fa-square-plus"></i> Explore Full Technical Case Study</span>';
+                summaryBtn.innerHTML = '<i class="fa-solid fa-chevron-down"></i> Explore Technical Deep-Dive';
             }
-        }
-    }
-}, true);
+        });
+    });
+});
 
-// Copy Email & Toast Notification Handler
-function copyEmail(e, email) {
-    if (!email) email = 'sbangad@purdue.edu';
-    
-    // Copy to clipboard
+// ----------------------------------------------------------------------
+// 6. Global Copy Email & Toast Notification Handler
+// ----------------------------------------------------------------------
+function copyEmail(event, email = 'sbangad@purdue.edu') {
+    if (event) {
+        event.preventDefault();
+    }
+
     if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(email);
+        navigator.clipboard.writeText(email).then(() => {
+            showToast(`Copied ${email} to clipboard!`);
+        }).catch(() => {
+            fallbackCopy(email);
+        });
     } else {
-        const textarea = document.createElement('textarea');
-        textarea.value = email;
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
+        fallbackCopy(email);
     }
+}
 
-    // Show visual notification Toast
-    let toast = document.getElementById('email-toast');
+function fallbackCopy(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+        document.execCommand('copy');
+        showToast(`Copied ${text} to clipboard!`);
+    } catch (err) {
+        showToast(`Email: ${text}`);
+    }
+    document.body.removeChild(textArea);
+}
+
+function showToast(message) {
+    let toast = document.getElementById('portfolio-toast');
     if (!toast) {
         toast = document.createElement('div');
-        toast.id = 'email-toast';
-        toast.style.cssText = 'position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #050c1e; border: 2px solid var(--neon-cyan); color: var(--neon-cyan); padding: 0.8rem 1.6rem; border-radius: 50px; font-family: var(--font-mono); font-size: 0.9rem; box-shadow: 0 0 25px rgba(0, 240, 255, 0.4); z-index: 10000; transition: opacity 0.3s ease-in-out; opacity: 0; pointer-events: none;';
+        toast.id = 'portfolio-toast';
+        toast.className = 'toast-notice';
         document.body.appendChild(toast);
     }
 
-    toast.innerHTML = `<i class="fa-solid fa-circle-check" style="margin-right: 6px;"></i> Email copied: <strong style="color: #fff;">${email}</strong>`;
-    toast.style.opacity = '1';
+    toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${message}`;
+    toast.classList.add('show');
 
-    setTimeout(() => {
-        toast.style.opacity = '0';
-    }, 3000);
+    clearTimeout(window.toastTimer);
+    window.toastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 2800);
 }
 
 window.copyEmail = copyEmail;
